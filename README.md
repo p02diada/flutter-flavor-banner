@@ -4,8 +4,8 @@ Flavor Banner is a package that make easy to configure flavors and add a banner 
 
 ## ScreenShots
 
-![Alt screenshot-1](../resources/screenshot-1.png "Screenshot 1")
-![Alt screenshot-2](../resources/screenshot-2.png "Screenshot 2")
+![Alt screenshot-1](./resources/screenshot-1.png "Screenshot 1")
+![Alt screenshot-2](./resources/screenshot-2.png "Screenshot 2")
 
 ## Usage
 
@@ -25,8 +25,11 @@ dependencies:
 You have to create different mains for your flavors, for example:
 
 main_test.dart
+
 main_development.dart
+
 main_staging.dart
+
 main_production.dart
 
 - import
