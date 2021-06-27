@@ -16,7 +16,7 @@ class DeviceInfoDialog extends StatelessWidget {
       contentPadding: const EdgeInsets.only(bottom: 10.0),
       title: Container(
         padding: const EdgeInsets.all(15.0),
-        color: FlavorConfig.instance.color,
+        color: FlavorConfig.instance!.color,
         child: Text(
           'Device Info',
           style: TextStyle(color: Colors.white),
@@ -44,11 +44,11 @@ class DeviceInfoDialog extends StatelessWidget {
         future: DeviceUtils.iosDeviceInfo(),
         builder: (context, AsyncSnapshot<IosDeviceInfo> snapshot) {
           if (!snapshot.hasData) return Container();
-          IosDeviceInfo device = snapshot.data;
+          IosDeviceInfo device = snapshot.data!;
           return SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _buildTile('Flavor:', '${FlavorConfig.instance.name}'),
+                _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
                 _buildTile('Build mode:',
                     '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
                 _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
@@ -58,18 +58,18 @@ class DeviceInfoDialog extends StatelessWidget {
                 _buildTile('System version:', '${device.systemVersion}'),
                 FutureBuilder(
                   future: PackageInfo.fromPlatform(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                     if (!snapshot.hasData) return Container();
                     return _buildTile(
-                        'App version:', '${snapshot.data.version}');
+                        'App version:', '${snapshot.data!.version}');
                   },
                 ),
                 FutureBuilder(
                   future: PackageInfo.fromPlatform(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                     if (!snapshot.hasData) return Container();
                     return _buildTile(
-                        'App package name:', '${snapshot.data.packageName}');
+                        'App package name:', '${snapshot.data!.packageName}');
                   },
                 ),
               ],
@@ -84,11 +84,11 @@ class DeviceInfoDialog extends StatelessWidget {
         builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
           if (!snapshot.hasData) return Container();
 
-          AndroidDeviceInfo device = snapshot.data;
+          AndroidDeviceInfo device = snapshot.data!;
           return SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _buildTile('Flavor:', '${FlavorConfig.instance.name}'),
+                _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
                 _buildTile('Build mode:',
                     '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
                 _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
@@ -98,18 +98,18 @@ class DeviceInfoDialog extends StatelessWidget {
                 _buildTile('Android SDK:', '${device.version.sdkInt}'),
                 FutureBuilder(
                   future: PackageInfo.fromPlatform(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                     if (!snapshot.hasData) return Container();
                     return _buildTile(
-                        'App version:', '${snapshot.data.version}');
+                        'App version:', '${snapshot.data!.version}');
                   },
                 ),
                 FutureBuilder(
                   future: PackageInfo.fromPlatform(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                     if (!snapshot.hasData) return Container();
                     return _buildTile(
-                        'App package name:', '${snapshot.data.packageName}');
+                        'App package name:', '${snapshot.data!.packageName}');
                   },
                 ),
               ],

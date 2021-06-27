@@ -2,7 +2,6 @@ import 'package:device_info/device_info.dart';
 
 import '../enums/build_modes.dart';
 
-
 class DeviceUtils {
   static BuildMode currentBuildMode() {
     if (const bool.fromEnvironment('dart.vm.product')) {
