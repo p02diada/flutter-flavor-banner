@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flavorbanner/utils/string_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:device_info/device_info.dart';
 
 import '../utils/device_utils.dart';
