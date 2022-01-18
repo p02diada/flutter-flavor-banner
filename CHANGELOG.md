@@ -1,3 +1,7 @@
+## [1.0.2]
+
+Adding web support
+
 ## [1.0.0]
 
 Adding null safety
