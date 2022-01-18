@@ -12,7 +12,7 @@ class FirstPage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          FlavorConfig.instance.values.baseUrl,
+          FlavorConfig.instance?.values.baseUrl,
         ),
       ),
     );

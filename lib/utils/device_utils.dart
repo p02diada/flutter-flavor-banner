@@ -1,4 +1,4 @@
-import 'package:device_info/device_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 import '../enums/build_modes.dart';
 
@@ -24,5 +24,10 @@ class DeviceUtils {
   static Future<IosDeviceInfo> iosDeviceInfo() async {
     DeviceInfoPlugin plugin = DeviceInfoPlugin();
     return plugin.iosInfo;
+  }
+
+  static Future<WebBrowserInfo> webDeviceInfo() async {
+    DeviceInfoPlugin plugin = DeviceInfoPlugin();
+    return plugin.webBrowserInfo;
   }
 }

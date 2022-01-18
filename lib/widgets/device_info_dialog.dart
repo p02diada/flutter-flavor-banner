@@ -1,8 +1,9 @@
 import 'dart:io';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flavorbanner/utils/string_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
-import 'package:device_info/device_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../utils/device_utils.dart';
 import '../flavor_config.dart';
@@ -28,6 +29,8 @@ class DeviceInfoDialog extends StatelessWidget {
   }
 
   Widget _getContent() {
+    if (kIsWeb) return _webContent();
+
     if (Platform.isAndroid) {
       return _androidContent();
     }
@@ -39,43 +42,76 @@ class DeviceInfoDialog extends StatelessWidget {
     return Text("You're not on Android neither iOS");
   }
 
+  Widget _webContent() {
+    return FutureBuilder(
+      future: DeviceUtils.webDeviceInfo(),
+      builder: (context, AsyncSnapshot<WebBrowserInfo> snapshot) {
+        if (!snapshot.hasData) return Container();
+        WebBrowserInfo device = snapshot.data!;
+        return SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
+              _buildTile('Build mode:',
+                  '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
+              _buildTile('Platform:', '${device.platform}'),
+              _buildTile('Product:', '${device.productSub}'),
+              _buildTile('User Agent:', '${device.userAgent}'),
+              _buildTile('Vendor:', '${device.vendorSub}'),
+              _buildTile('Language:', '${device.language}'),
+              FutureBuilder(
+                future: PackageInfo.fromPlatform(),
+                builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
+                  if (!snapshot.hasData) return Container();
+                  return _buildTile(
+                      'App version:', '${snapshot.data!.version}');
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Widget _iOSContent() {
     return FutureBuilder(
-        future: DeviceUtils.iosDeviceInfo(),
-        builder: (context, AsyncSnapshot<IosDeviceInfo> snapshot) {
-          if (!snapshot.hasData) return Container();
-          IosDeviceInfo device = snapshot.data!;
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
-                _buildTile('Build mode:',
-                    '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
-                _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
-                _buildTile('Device:', '${device.name}'),
-                _buildTile('Model:', '${device.model}'),
-                _buildTile('System name:', '${device.systemName}'),
-                _buildTile('System version:', '${device.systemVersion}'),
-                FutureBuilder(
-                  future: PackageInfo.fromPlatform(),
-                  builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
-                    if (!snapshot.hasData) return Container();
-                    return _buildTile(
-                        'App version:', '${snapshot.data!.version}');
-                  },
-                ),
-                FutureBuilder(
-                  future: PackageInfo.fromPlatform(),
-                  builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
-                    if (!snapshot.hasData) return Container();
-                    return _buildTile(
-                        'App package name:', '${snapshot.data!.packageName}');
-                  },
-                ),
-              ],
-            ),
-          );
-        });
+      future: DeviceUtils.iosDeviceInfo(),
+      builder: (context, AsyncSnapshot<IosDeviceInfo> snapshot) {
+        if (!snapshot.hasData) return Container();
+        IosDeviceInfo device = snapshot.data!;
+        return SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
+              _buildTile('Build mode:',
+                  '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
+              _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
+              _buildTile('Device:', '${device.name}'),
+              _buildTile('Model:', '${device.model}'),
+              _buildTile('System name:', '${device.systemName}'),
+              _buildTile('System version:', '${device.systemVersion}'),
+              FutureBuilder(
+                future: PackageInfo.fromPlatform(),
+                builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
+                  if (!snapshot.hasData) return Container();
+                  return _buildTile(
+                      'App version:', '${snapshot.data!.version}');
+                },
+              ),
+              FutureBuilder(
+                future: PackageInfo.fromPlatform(),
+                builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
+                  if (!snapshot.hasData) return Container();
+                  return _buildTile(
+                      'App package name:', '${snapshot.data!.packageName}');
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Widget _androidContent() {
