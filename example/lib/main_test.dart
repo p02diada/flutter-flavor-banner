@@ -1,13 +1,13 @@
 import 'package:flavorbanner/flavorbanner.dart';
 import 'package:flutter/material.dart';
-import './lib/app.dart';
+import 'src/app.dart';
 
 void main() {
   FlavorConfig(
-    flavor: Flavor.STAGING,
-    color: Colors.green,
+    flavor: Flavor.TEST,
+    color: Colors.orange,
     values: FlavorValues(
-      baseUrl: "https://staging.com/",
+      baseUrl: "https://test.com/",
       showBanner: true,
     ),
   );
