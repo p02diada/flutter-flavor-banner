@@ -9,7 +9,7 @@ import '../utils/device_utils.dart';
 import '../flavor_config.dart';
 
 class DeviceInfoDialog extends StatelessWidget {
-  DeviceInfoDialog();
+  const DeviceInfoDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class DeviceInfoDialog extends StatelessWidget {
       title: Container(
         padding: const EdgeInsets.all(15.0),
         color: FlavorConfig.instance!.color,
-        child: Text(
+        child: const Text(
           'Device Info',
           style: TextStyle(color: Colors.white),
         ),
@@ -39,7 +39,7 @@ class DeviceInfoDialog extends StatelessWidget {
       return _iOSContent();
     }
 
-    return Text("You're not on Android neither iOS");
+    return const Text("You're not on Android neither iOS");
   }
 
   Widget _webContent() {
@@ -51,9 +51,11 @@ class DeviceInfoDialog extends StatelessWidget {
         return SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
-              _buildTile('Build mode:',
-                  '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
+              _buildTile('Flavor:', FlavorConfig.instance!.name),
+              _buildTile(
+                  'Build mode:',
+                  StringUtils.enumName(
+                      DeviceUtils.currentBuildMode().toString())),
               _buildTile('Platform:', '${device.platform}'),
               _buildTile('Product:', '${device.productSub}'),
               _buildTile('User Agent:', '${device.userAgent}'),
@@ -63,8 +65,7 @@ class DeviceInfoDialog extends StatelessWidget {
                 future: PackageInfo.fromPlatform(),
                 builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                   if (!snapshot.hasData) return Container();
-                  return _buildTile(
-                      'App version:', '${snapshot.data!.version}');
+                  return _buildTile('App version:', snapshot.data!.version);
                 },
               ),
             ],
@@ -83,9 +84,11 @@ class DeviceInfoDialog extends StatelessWidget {
         return SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
-              _buildTile('Build mode:',
-                  '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
+              _buildTile('Flavor:', FlavorConfig.instance!.name),
+              _buildTile(
+                  'Build mode:',
+                  StringUtils.enumName(
+                      DeviceUtils.currentBuildMode().toString())),
               _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
               _buildTile('Device:', '${device.name}'),
               _buildTile('Model:', '${device.model}'),
@@ -95,8 +98,7 @@ class DeviceInfoDialog extends StatelessWidget {
                 future: PackageInfo.fromPlatform(),
                 builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                   if (!snapshot.hasData) return Container();
-                  return _buildTile(
-                      'App version:', '${snapshot.data!.version}');
+                  return _buildTile('App version:', snapshot.data!.version);
                 },
               ),
               FutureBuilder(
@@ -104,7 +106,7 @@ class DeviceInfoDialog extends StatelessWidget {
                 builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                   if (!snapshot.hasData) return Container();
                   return _buildTile(
-                      'App package name:', '${snapshot.data!.packageName}');
+                      'App package name:', snapshot.data!.packageName);
                 },
               ),
             ],
@@ -124,9 +126,11 @@ class DeviceInfoDialog extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _buildTile('Flavor:', '${FlavorConfig.instance!.name}'),
-                _buildTile('Build mode:',
-                    '${StringUtils.enumName(DeviceUtils.currentBuildMode().toString())}'),
+                _buildTile('Flavor:', FlavorConfig.instance!.name),
+                _buildTile(
+                    'Build mode:',
+                    StringUtils.enumName(
+                        DeviceUtils.currentBuildMode().toString())),
                 _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
                 _buildTile('Manufacturer:', '${device.manufacturer}'),
                 _buildTile('Model:', '${device.model}'),
@@ -136,8 +140,7 @@ class DeviceInfoDialog extends StatelessWidget {
                   future: PackageInfo.fromPlatform(),
                   builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                     if (!snapshot.hasData) return Container();
-                    return _buildTile(
-                        'App version:', '${snapshot.data!.version}');
+                    return _buildTile('App version:', snapshot.data!.version);
                   },
                 ),
                 FutureBuilder(
@@ -145,7 +148,7 @@ class DeviceInfoDialog extends StatelessWidget {
                   builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                     if (!snapshot.hasData) return Container();
                     return _buildTile(
-                        'App package name:', '${snapshot.data!.packageName}');
+                        'App package name:', snapshot.data!.packageName);
                   },
                 ),
               ],
@@ -162,7 +165,7 @@ class DeviceInfoDialog extends StatelessWidget {
           Expanded(
             child: Text(
               key,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(child: Text(value))

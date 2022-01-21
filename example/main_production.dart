@@ -12,5 +12,5 @@ void main() {
       mapsApiKey: 'mapsApiKey',
     ),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }

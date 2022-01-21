@@ -11,5 +11,5 @@ void main() {
       showBanner: true,
     ),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
