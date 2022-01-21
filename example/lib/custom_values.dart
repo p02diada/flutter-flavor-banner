@@ -1,4 +1,4 @@
-import 'package:flavorbanner/flavor_config.dart';
+import 'package:flavorbanner/flavorbanner.dart';
 
 class CustomValues extends FlavorValues {
   CustomValues({

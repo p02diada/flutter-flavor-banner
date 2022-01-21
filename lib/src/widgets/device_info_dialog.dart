@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flavorbanner/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../utils/device_utils.dart';
+import '../utils/string_utils.dart';
 import '../flavor_config.dart';
 
+/// Alert dialog with device info details
 class DeviceInfoDialog extends StatelessWidget {
   const DeviceInfoDialog({Key? key}) : super(key: key);
 

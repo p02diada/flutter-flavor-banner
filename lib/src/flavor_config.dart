@@ -10,8 +10,7 @@ class FlavorValues {
   final String? baseUrl;
   final bool showBanner;
 
-//Add other flavor specific values, e.g database name
-
+  // Can add other flavor specific values, e.g database name
 }
 
 class FlavorConfig {

@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import '../flavor_config.dart';
 import 'device_info_dialog.dart';
 
+/// Flavor banner widget
+///
+/// Overlay banner on the top left corner of the screen.
+/// Apply color and name from FlavorConfig
+///
+/// When press this banner, show dialog with device info
 class FlavorBanner extends StatefulWidget {
   final Widget child;
 
