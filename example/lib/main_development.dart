@@ -1,6 +1,6 @@
-import 'package:flavorbanner/flavor_config.dart';
+import 'package:flavorbanner/flavorbanner.dart';
 import 'package:flutter/material.dart';
-import './lib/app.dart';
+import 'src/app.dart';
 
 void main() {
   FlavorConfig(
@@ -11,5 +11,5 @@ void main() {
       showBanner: true,
     ),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }

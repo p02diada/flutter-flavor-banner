@@ -1,6 +1,7 @@
 name: flavorbanner
-description: Flavor Banner.
+description: Flavor Banner is a package that make easy to configure flavors and add a banner to show info about device
 version: 1.0.1
+publisher: Alberto Díaz Adorna
 homepage: https://github.com/p02diada/flutter-flavor-banner
 
 environment:
@@ -13,6 +14,7 @@ dependencies:
   package_info_plus: ^1.3.0
 
 dev_dependencies:
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
 

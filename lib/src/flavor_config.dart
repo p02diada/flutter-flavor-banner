@@ -10,24 +10,39 @@ class FlavorValues {
   final String? baseUrl;
   final bool showBanner;
 
-//Add other flavor specific values, e.g database name
-
+  // Can add other flavor specific values, e.g database name
 }
 
 class FlavorConfig {
+  /// Enum of flavor
   final Flavor flavor;
+
+  /// Name of flavor
   final String name;
+
+  /// Color of banner flavor
   final Color color;
-  final dynamic values;
+
+  /// Dynamic values
+  /// Will be extended of [FlavorValues]
+  final FlavorValues values;
 
   static FlavorConfig? _instance;
 
-  factory FlavorConfig(
-      {required Flavor flavor,
-      Color color: Colors.blue,
-      required dynamic values}) {
+  /// Config flavor with internal instance.
+  ///
+  /// By default color will be [Colors.blue]
+  factory FlavorConfig({
+    required Flavor flavor,
+    Color color = Colors.blue,
+    required FlavorValues values,
+  }) {
     _instance ??= FlavorConfig._internal(
-        flavor, StringUtils.enumName(flavor.toString()), color, values);
+      flavor,
+      StringUtils.enumName(flavor.toString()),
+      color,
+      values,
+    );
     return _instance!;
   }
 
@@ -37,5 +52,6 @@ class FlavorConfig {
     return _instance;
   }
 
+  /// If show banner, return [true]
   static bool showBanner() => _instance!.values.showBanner == true;
 }

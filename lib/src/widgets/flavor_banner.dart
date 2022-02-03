@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'device_info_dialog.dart';
 import '../flavor_config.dart';
+import 'device_info_dialog.dart';
 
+/// Flavor banner widget
+///
+/// Overlay banner on the top left corner of the screen.
+/// Apply color and name from FlavorConfig
+///
+/// When press this banner, show dialog with device info
 class FlavorBanner extends StatefulWidget {
   final Widget child;
 
-  FlavorBanner({required this.child});
+  const FlavorBanner({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   @override
   _FlavorBannerState createState() => _FlavorBannerState();
@@ -31,7 +40,7 @@ class _FlavorBannerState extends State<FlavorBanner> {
         GestureDetector(
             child: widget.child, onTap: () => showDeviceInfo(false)),
         _buildBanner(context),
-        showDeviceInfoDialog == true ? DeviceInfoDialog() : Container(),
+        showDeviceInfoDialog == true ? const DeviceInfoDialog() : Container(),
       ],
     );
   }
@@ -45,7 +54,7 @@ class _FlavorBannerState extends State<FlavorBanner> {
   Widget _buildBanner(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      child: Container(
+      child: SizedBox(
         width: 35,
         height: 55,
         child: CustomPaint(
