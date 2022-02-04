@@ -1,3 +1,11 @@
+## [2.0.0]
+
+BREAKING CHANGE: Now to use library, will be use import 'package:flavorbanner/flavorbanner.dart'
+
+## [1.0.3]
+
+BREAKING CHANGE: Now to use library, will be use import 'package:flavorbanner/flavorbanner.dart'
+
 ## [1.0.2]
 
 Adding web support
