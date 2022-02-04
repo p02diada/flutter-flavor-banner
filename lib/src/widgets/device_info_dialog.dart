@@ -5,7 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../utils/device_utils.dart';
-import '../utils/string_utils.dart';
+import '../utils/string_extension.dart';
 import '../flavor_config.dart';
 
 /// Alert dialog with device info details
@@ -53,10 +53,8 @@ class DeviceInfoDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _buildTile('Flavor:', FlavorConfig.instance!.name),
-              _buildTile(
-                  'Build mode:',
-                  StringUtils.enumName(
-                      DeviceUtils.currentBuildMode().toString())),
+              _buildTile('Build mode:',
+                  DeviceUtils.currentBuildMode().toString().enumName()),
               _buildTile('Platform:', '${device.platform}'),
               _buildTile('Product:', '${device.productSub}'),
               _buildTile('User Agent:', '${device.userAgent}'),
@@ -86,10 +84,8 @@ class DeviceInfoDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _buildTile('Flavor:', FlavorConfig.instance!.name),
-              _buildTile(
-                  'Build mode:',
-                  StringUtils.enumName(
-                      DeviceUtils.currentBuildMode().toString())),
+              _buildTile('Build mode:',
+                  DeviceUtils.currentBuildMode().toString().enumName()),
               _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
               _buildTile('Device:', '${device.name}'),
               _buildTile('Model:', '${device.model}'),
@@ -128,10 +124,8 @@ class DeviceInfoDialog extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 _buildTile('Flavor:', FlavorConfig.instance!.name),
-                _buildTile(
-                    'Build mode:',
-                    StringUtils.enumName(
-                        DeviceUtils.currentBuildMode().toString())),
+                _buildTile('Build mode:',
+                    DeviceUtils.currentBuildMode().toString().enumName()),
                 _buildTile('Physical device?:', '${device.isPhysicalDevice}'),
                 _buildTile('Manufacturer:', '${device.manufacturer}'),
                 _buildTile('Model:', '${device.model}'),

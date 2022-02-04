@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'utils/string_utils.dart';
+import 'utils/string_extension.dart';
 
 enum Flavor { TEST, DEV, STAGING, PROD }
 
@@ -39,7 +39,7 @@ class FlavorConfig {
   }) {
     _instance ??= FlavorConfig._internal(
       flavor,
-      StringUtils.enumName(flavor.toString()),
+      flavor.toString().enumName(),
       color,
       values,
     );
