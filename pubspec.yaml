@@ -19,4 +19,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
+  plugin:
+    platforms:
+      ios:
+      android:
+      web:
