@@ -35,7 +35,7 @@ main_production.dart
 - import
 
 ```dart
-import 'package:flavorbanner/flavor_config.dart';
+import 'package:flavorbanner/flavorbanner.dart'
 ```
 
 - create mains
@@ -109,7 +109,7 @@ Text(FlavorConfig.instance.values.baseUrl)
 You can use your own config values, for example:
 
 ```dart
-import 'package:flavorbanner/flavor_config.dart';
+import 'package:flavorbanner/flavorbanner.dart'
 
 class CustomValues extends FlavorValues {
   CustomValues({
