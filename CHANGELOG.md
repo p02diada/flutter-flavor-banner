@@ -1,3 +1,7 @@
+## [2.0.1]
+
+Fix [ISSUE-7](https://github.com/p02diada/flutter-flavor-banner/issues/7)
+
 ## [2.0.0]
 
 BREAKING CHANGE: Now to use library, will be use import 'package:flavorbanner/flavorbanner.dart'
