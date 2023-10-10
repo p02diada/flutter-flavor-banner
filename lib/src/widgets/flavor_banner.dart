@@ -27,7 +27,7 @@ class _FlavorBannerState extends State<FlavorBanner> {
 
   void showDeviceInfo(bool show) {
     setState(() {
-      showDeviceInfoDialog = show;
+      showDeviceInfoDialog = false; // Hairo: show; disabled
     });
   }
 

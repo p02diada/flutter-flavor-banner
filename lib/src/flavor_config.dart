@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'utils/string_extension.dart';
 
-enum Flavor { TEST, DEV, STAGING, PROD }
+enum Flavor { TEST, DEV, STAGING, PROD,
+  ERROR,
+  SRC, 
+  LOCAL,
+  FIREBASE,
+  STORE,
+}
 
 class FlavorValues {
   FlavorValues({this.baseUrl, this.showBanner = false});
